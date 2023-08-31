@@ -24,13 +24,11 @@ export default {
       mapCenter: {lat: -33.4132183, lng: -70.5406616}, // Coordenadas del centro del mapa
       mapZoom: 10, // Nivel de zoom del mapa
       coordenadas: {},
-      positionBus: {lat: 0, lng: 0},
+      positionBus:  {lat: -33.4132183, lng: -70.5406616},
       trackers: 10176445
 
     }
   },
-
-
   mounted() {
     let socket = new WebSocket("wss://masgps.witservices.io/api-v2/event/subscription");
     let message = {
@@ -40,28 +38,23 @@ export default {
       "trackers": [this.trackers]
     };
 
-    socket.onopen = function (e) {
-
+    socket.onopen = (e) => {
       socket.send(JSON.stringify(message));
     };
 
-    socket.onmessage = function (event) {
-
+    socket.onmessage = (event) => {
       const tramaGps = JSON.parse(event.data);
 
       if (tramaGps.data.hasOwnProperty('gps')) {
-
         this.positionBus = tramaGps.data.gps.location;
         this.coordenadas = tramaGps.data.gps.location;
+        this.mapCenter = tramaGps.data.gps.location;
         let tracker = tramaGps.data.source_id;
 
         console.log(this.coordenadas);
         console.log(tracker);
       }
-
     };
-
-
   },
 
 
