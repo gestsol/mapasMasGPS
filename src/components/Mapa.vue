@@ -2,7 +2,7 @@
   <div>
     <div class="card mt-1">
       <div class="card-header">
-        <b> Mi BUS</b>
+        <b>Mi BUS</b>
       </div>
       <div class="card-body">
         <h5 class="card-title">{{ selectedPatente }} - {{ selectedSource }} - {{ selectedTracker }}</h5>
@@ -54,7 +54,7 @@ export default {
     }
   },
   methods: {
-    conectar: function () {
+    conectar() {
       let socket = new WebSocket("wss://masgps.witservices.io/api-v2/event/subscription");
       let message = { "action": "subscribe", "hash": "a42aea049190363eb6e21ecc954600b6", "events": ["state"], "trackers": this.trackers };
 
@@ -103,3 +103,4 @@ export default {
 
 <style>
 </style>
+
