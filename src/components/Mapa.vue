@@ -5,7 +5,7 @@
         <b>Mi BUS</b>
       </div>
       <div class="card-body">
-        <h5 class="card-title">{{ selectedPatente }} - {{ selectedSource }} - {{ selectedTracker }}</h5>
+        <h5 class="card-title">{{ selectedPatente }} - {{ selectedSource }} - {{ selectedTracker }} - {{ tramaSource }}</h5>
         <p>La distancia es: <b>{{ distance }}</b> km</p>
         <p>El tiempo estimado de espera es de: <b>{{ demora }}</b> min</p>
         <span>{{ source }}</span>
@@ -38,6 +38,10 @@ export default {
     selectedTracker: {
       type: String,
       required: true
+    },
+    trackersOptions: {
+      type: Object,
+      required: true
     }
   },
   data() {
@@ -50,7 +54,8 @@ export default {
       Paradero: { lat: -33.4132183, lng: -70.5406616 },
       trackers: [10176497, 10176427, 10105327, 10176442, 10176445, 10177113, 10176440, 10176496, 10177113],
       distance: null,
-      demora: null
+      demora: null,
+      tramaSource: 0
     }
   },
   methods: {
@@ -64,6 +69,7 @@ export default {
       socket.onmessage = (event) => {
         const tramaGps = JSON.parse(event.data);
         if (tramaGps.data.hasOwnProperty('gps')) {
+          this.tramaSource = tramaGps.data.source_id
           console.log(tramaGps.data.source_id, this.selectedSource)
           if (tramaGps.data.source_id === this.selectedSource) {
             function degToRad(deg) {
@@ -96,6 +102,7 @@ export default {
     }
   },
   mounted() {
+    this.trackers = this.trackersOptions.map(item => item.id);
     this.conectar();
   }
 }
