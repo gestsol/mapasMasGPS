@@ -4,7 +4,7 @@
 
     <select class="form-select mt-2" v-model="selectedTracker" @change="selectBus">
       <option v-for="bus in buses" :value="bus.id.toString()" :key="bus.label">
-        {{ bus.label }}
+        {{ bus.label }} | {{bus.source.id}}
       </option>
     </select>
   </div>
@@ -24,7 +24,7 @@ export default {
       buses: [],
       buses_ready: false,
       selectedPatente: '',
-      selectedSource: 10103058,
+      selectedSource: null,
       selectedTracker: ''
     }
   },
@@ -36,7 +36,7 @@ export default {
       const selectedBus = this.buses.find(bus => bus.id === parseInt(this.selectedTracker));
       this.selectedSource = selectedBus.source.id;
       this.selectedPatente = selectedBus.label;
-      console.log(selectedBus);
+      console.log("selectedBus", selectedBus);
     },
     async fetch() {
       try {

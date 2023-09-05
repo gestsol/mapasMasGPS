@@ -14,7 +14,7 @@
 
     <h6></h6>
 
-    <GMapMap :center="mapCenter" :zoom="mapZoom" map-type-id="roadmap" style="width: 100%; height: 500px">
+    <GMapMap v-if="selectedSource !== null" :center="mapCenter" :zoom="mapZoom" map-type-id="roadmap" style="width: 100%; height: 500px">
       <GMapMarker :position="positionBus"></GMapMarker>
       <GMapMarker :position="Paradero"></GMapMarker>
     </GMapMap>
