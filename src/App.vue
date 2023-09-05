@@ -13,7 +13,6 @@
 <script>
 import Mapa from './components/Mapa.vue';
 import axios from "axios";
-import { reactive } from "vue";
 
 export default {
   name: 'App',
@@ -59,3 +58,4 @@ body {
   width: 50%;
 }
 </style>
+
