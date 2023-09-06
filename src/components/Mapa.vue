@@ -1,23 +1,21 @@
 <template>
   <div>
-    <div class="card mt-1">
-      <div class="card-header">
-        <b>Mi BUS</b>
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">{{ selectedPatente }} - {{ selectedSource }} - {{ selectedTracker }} - {{ tramaSource }}</h5>
-        <p>La distancia es: <b>{{ distance }}</b> km</p>
-        <p>El tiempo estimado de espera es de: <b>{{ demora }}</b> min</p>
-        <span>{{ source }}</span>
-      </div>
-    </div>
-
-    <h6></h6>
-
-    <GMapMap v-if="selectedSource !== null" :center="mapCenter" :zoom="mapZoom" map-type-id="roadmap" style="width: 100%; height: 500px">
+  
+    <GMapMap :center="mapCenter" :zoom="mapZoom" map-type-id="roadmap" style="width: 100%; height: 500px">
       <GMapMarker :position="positionBus" :label="selectedPatente"></GMapMarker>
       <GMapMarker :position="Paradero" :label="'Paradero'"></GMapMarker>
     </GMapMap>
+    <div class="card ">
+      <div class="card-header">
+        <b>{{ selectedPatente }}</b>
+      </div>
+      <div class="card-body">
+   
+         <b>{{ distance }}</b> km y <b>{{ demora }}</b> min de distancia
+      </div>
+    </div>
+
+
   </div>
 </template>
 
@@ -50,7 +48,7 @@ export default {
       mapZoom: 14,
       coordenadas: {},
       source: null,
-      positionBus: { lat: -33.4132183, lng: -70.5406616 },
+      positionBus: { lat: 0, lng: 0},
       Paradero: { lat: -33.4132183, lng: -70.5406616 },
       trackers: [10176497, 10176427, 10105327, 10176442, 10176445, 10177113, 10176440, 10176496, 10177113],
       distance: null,

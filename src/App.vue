@@ -1,12 +1,16 @@
 <template>
-  <div class="container">
-    <Mapa v-if="buses_ready" :selectedTracker="selectedTracker" :selectedPatente="selectedPatente" :selectedSource="selectedSource" :trackersOptions="buses"></Mapa>
-
-    <select class="form-select mt-2" v-model="selectedTracker" @change="selectBus">
+   <label class="text-center"><h3>Mi Bus</h3></label>
+  <div >
+   
+       <select class="form-select " v-model="selectedTracker" @change="selectBus">
+        <option value="" disabled selected>Selecciona tu BUS</option>
+   
       <option v-for="bus in buses" :value="bus.id.toString()" :key="bus.label">
         {{ bus.label }} | {{bus.source.id}}
       </option>
     </select>
+    <Mapa v-if="buses_ready" :selectedTracker="selectedTracker" :selectedPatente="selectedPatente" :selectedSource="selectedSource" :trackersOptions="buses"></Mapa>
+
   </div>
 </template>
 
@@ -24,7 +28,7 @@ export default {
       buses: [],
       buses_ready: false,
       selectedPatente: '',
-      selectedSource: null,
+      selectedSource: 0,
       selectedTracker: ''
     }
   },
@@ -53,11 +57,11 @@ export default {
 
 <style>
 body {
-  background: rgb(163, 155, 155);
+  background: rgb(174, 173, 179);
 }
 
 .form-select {
-  width: 50%;
+  width: 100%;
 }
 </style>
 
