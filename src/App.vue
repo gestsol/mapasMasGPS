@@ -44,7 +44,7 @@ export default {
     },
     async fetch() {
       try {
-        const resultado = await axios.post("http://www.trackermasgps.com/api-v2/tracker/list", { "hash": "a42aea049190363eb6e21ecc954600b6" });
+        const resultado = await axios.get("https://masgps-bi.wit.la/buses/miBusLasCondes.php");
         this.buses = resultado.data.list;
         this.buses_ready = true
       } catch (error) {
