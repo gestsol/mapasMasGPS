@@ -1,7 +1,7 @@
 <template>
   <div>
   
-
+   
     <GoogleMap
       api-key="AIzaSyAfLNIHZHdf9ZDKnEP9z3M-lK9C-ryRodU"
       style="width: 100%; height: 500px"
@@ -11,15 +11,15 @@
       
         <CustomMarker :options="{ position: positionBus, anchorPoint: 'BOTTOM_CENTER' }">
               <div  >
-                <span style="background: rgb(0, 0, 0); color: white;" ><b> {{ selectedPatente }}</b></span>
-                <svg style="width: 30px; height: 30px; "  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M288 0C422.4 0 512 35.2 512 80V96l0 32c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32l0 160c0 17.7-14.3 32-32 32v32c0 17.7-14.3 32-32 32H416c-17.7 0-32-14.3-32-32V448H192v32c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32l0-32c-17.7 0-32-14.3-32-32l0-160c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h0V96h0V80C64 35.2 153.6 0 288 0zM128 160v96c0 17.7 14.3 32 32 32H272V128H160c-17.7 0-32 14.3-32 32zM304 288H416c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32H304V288zM144 400a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm288 0a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM384 80c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16s7.2 16 16 16H368c8.8 0 16-7.2 16-16z"/></svg>
+                <span style="background: rgb(255, 0, 0); color: white;" ><b> {{ selectedPatente }}</b></span>
+                <svg style="width: 25px; height: 25px; "  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M288 0C422.4 0 512 35.2 512 80V96l0 32c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32l0 160c0 17.7-14.3 32-32 32v32c0 17.7-14.3 32-32 32H416c-17.7 0-32-14.3-32-32V448H192v32c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32l0-32c-17.7 0-32-14.3-32-32l0-160c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h0V96h0V80C64 35.2 153.6 0 288 0zM128 160v96c0 17.7 14.3 32 32 32H272V128H160c-17.7 0-32 14.3-32 32zM304 288H416c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32H304V288zM144 400a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm288 0a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM384 80c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16s7.2 16 16 16H368c8.8 0 16-7.2 16-16z"/></svg>
               </div>
         </CustomMarker>
 
-        <CustomMarker :options="{ position: Paradero, anchorPoint: 'BOTTOM_CENTER' }">
+        <CustomMarker :options="{ position: selectedParada, anchorPoint: 'BOTTOM_CENTER' }">
               <div  >
-                <span style="background: rgb(0, 0, 0); color: white;" ><b>Parada</b></span>
-                <svg style="width: 30px; height: 30px ;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M384 192c0 87.4-117 243-168.3 307.2c-12.3 15.3-35.1 15.3-47.4 0C117 435 0 279.4 0 192C0 86 86 0 192 0S384 86 384 192z"/></svg>
+                <span style="background: rgb(255, 0, 0); color: white;" ><b>Paradero</b></span>
+                <svg style="width: 25px; height: 25px ;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M384 192c0 87.4-117 243-168.3 307.2c-12.3 15.3-35.1 15.3-47.4 0C117 435 0 279.4 0 192C0 86 86 0 192 0S384 86 384 192z"/></svg>
                 </div>
         </CustomMarker>
 
@@ -74,7 +74,15 @@ export default {
     trackersOptions: {
       type: Object,
       required: true
+    },
+
+    selectedParada:{
+      type:Object,
+      required: true
     }
+
+
+
   },
   data() {
     return {
@@ -114,8 +122,8 @@ export default {
             let lat1 = tramaGps.data.gps.location.lat;
             let lon1 = tramaGps.data.gps.location.lng;
 
-            let lat2 = this.Paradero.lat;
-            let lon2 = this.Paradero.lng;
+            let lat2 = this.selectedParada.lat;
+            let lon2 = this.selectedParada.lng;
 
             const radioTierra = 6371;
             const dLat = degToRad(lat2 - lat1);

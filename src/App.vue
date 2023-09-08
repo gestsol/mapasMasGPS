@@ -1,15 +1,26 @@
 <template>
-   <label class="text-center"><h3>Mi Bus</h3></label>
+  
   <div >
-   
-       <select class="form-select " v-model="selectedTracker" @change="selectBus">
-        <option value="" disabled selected>Selecciona tu BUS</option>
-   
-      <option v-for="bus in buses" :value="bus.id.toString()" :key="bus.label">
-        {{ bus.label }} | {{bus.source.id}}
-      </option>
+    
+    <div>
+      <select class="form-select " v-model="selectedParada" style="background: red; color: white;" >
+        <option value="" >Parada</option>
+        <option v-for="(item,index) in paraderos" :value="item.coord" :key="index">
+          {{ item.parada }}
+        </option>
     </select>
-    <Mapa v-if="buses_ready" :selectedTracker="selectedTracker" :selectedPatente="selectedPatente" :selectedSource="selectedSource" :trackersOptions="buses"></Mapa>
+
+   
+
+       <select class="form-select " v-model="selectedTracker" @change="selectBus">
+        <option value="" disabled selected>Recorrido</option>
+        <option v-for="bus in buses" :value="bus.id.toString()" :key="bus.label">
+        {{ bus.label }}
+        </option>
+    </select>
+    </div>
+
+    <Mapa v-if="buses_ready" :selectedTracker="selectedTracker" :selectedParada="selectedParada" :selectedPatente="selectedPatente" :selectedSource="selectedSource" :trackersOptions="buses"></Mapa>
 
   </div>
 </template>
@@ -29,7 +40,17 @@ export default {
       buses_ready: false,
       selectedPatente: '',
       selectedSource: 0,
-      selectedTracker: ''
+      selectedTracker: '',
+      selectedParada:'',
+      paraderos:[
+                  {parada:"Parada 1", coord:{lat:-33.42298,lng:-70.5296783}},
+                  {parada:"Parada 2", coord:{lat:-33.4166016,lng:-70.5338083}},
+                  {parada:"Parada 3", coord:{lat:-33.4085899,lng:-70.5451316}},
+                  {parada:"Parada 4", coord:{lat:-33.40758,  lng:-70.559805}},
+                  {parada:"Parada 5", coord:{lat:-33.402755, lng:-70.5143616}},
+                  {parada:"Parada 6", coord:{lat:-33.382295, lng:-70.5078683}},
+                 
+      ]
     }
   },
   created() {
