@@ -59,6 +59,11 @@ export default {
   components :{ GoogleMap, CustomMarker ,},
   
   props: {
+
+    hash:{
+      type:String ,
+      required: true
+    },
     selectedSource: {
       type: Number,
       required: true
@@ -78,7 +83,7 @@ export default {
 
     selectedParada:{
       type:Object,
-      required: true
+      //required: true
     }
 
 
@@ -101,7 +106,7 @@ export default {
   methods: {
     conectar() {
       let socket = new WebSocket("wss://masgps.witservices.io/api-v2/event/subscription");
-      let message = { "action": "subscribe", "hash": "a42aea049190363eb6e21ecc954600b6", "events": ["state"], "trackers": this.trackers };
+      let message = { "action": "subscribe", "hash": this.hash, "events": ["state"], "trackers": this.trackers };
 
       socket.onopen = (e) => {
         socket.send(JSON.stringify(message));
