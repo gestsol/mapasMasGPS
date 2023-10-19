@@ -6,9 +6,13 @@
         <l-map ref="map" v-model:zoom="zoom" :center="BusCoord">
           <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base"
             name="OpenStreetMap"></l-tile-layer>
-            <l-marker v-if="selectedParada && selectedParada.length === 2" :lat-lng="selectedParada"></l-marker>
+            <l-marker v-if="selectedParada && selectedParada.length === 2" :lat-lng="selectedParada">
+              <l-icon><i class="fa-solid fa-shop fa-2x"></i></l-icon>
+            </l-marker>
 
-            <l-marker  v-if="BusCoord && BusCoord.length === 2" :lat-lng="BusCoord"></l-marker>
+            <l-marker  v-if="BusCoord && BusCoord.length === 2" :lat-lng="BusCoord">
+            <l-icon><i class="fas fa-bus fa-2x"></i><span style="color: white; background-color: red;"><b>{{selectedPatente}}</b></span></l-icon>
+            </l-marker>
         </l-map>
       </div>
     </div>
