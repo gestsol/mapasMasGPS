@@ -1,14 +1,16 @@
 <template>
-
+  {{ selectedParada }}
   <div>
     <div class="">
       <div style="height:600px; width:100%">
-        <l-map ref="map" v-model:zoom="zoom" :center="BusCoord">
+        <l-map ref="map" v-model:zoom="zoom" :center="center">
           <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base"
             name="OpenStreetMap"></l-tile-layer>
-            <l-marker v-if="selectedParada && selectedParada.length === 2" :lat-lng="selectedParada"></l-marker>
 
-            <l-marker  v-if="BusCoord && BusCoord.length === 2" :lat-lng="BusCoord"></l-marker>
+          <l-marker :lat-lng="selectedParada"></l-marker>
+          <l-marker :lat-lng="markerCoords"></l-marker>
+
+
         </l-map>
       </div>
     </div>
@@ -17,7 +19,7 @@
 
     <div class="card ">
       <div class="card-header">
-        <b>{{ selectedPatente }}</b>
+        <b>pat</b>
       </div>
       <div class="card-body">
 
@@ -60,29 +62,27 @@ export default {
       type: Number,
       required: true
     },
-    BusCoord:{
-      type:[Array,String]
-    },
      trackersOptions: {
       type: Object,
       required: true
     },
     selectedParada:{
-      type:[Array,String],
+      type:String,
       default: function () {
         return [-33.4132183, -70.5406616];
       }
     },
+    /*
     selectedPatente:{
       type:String,
       //required: true
     },
+    */
     
 
 
 
   },
-  emits: ['cambiarProp'],
   data() {
     return {
       
@@ -122,10 +122,7 @@ export default {
             
 
             //this.$emit('cambiar-prop',tramaGps.data.gps.location);
-            //this.$emit('cambiar-prop',this.center);
-
-            this.emitCambiarProp(this.center);
-
+           // this.$emit('cambiar-prop',this.center);
 
             let lat1 = tramaGps.data.gps.location.lat;
             let lon1 = tramaGps.data.gps.location.lng;
@@ -148,10 +145,7 @@ export default {
         }
       }
     },
-    emitCambiarProp(valor) {
-    this.$emit('cambiar-prop', valor);
-      ;// Emite el evento 'cambiar-prop' con el valor
-  }
+
   },
   mounted() {
     this.trackers = this.trackersOptions.map(item => item.id);

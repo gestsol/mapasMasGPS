@@ -7,12 +7,14 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    
+    "@vue-leaflet/vue-leaflet": "^0.10.1",
     "axios": "^1.5.0",
     "core-js": "^3.8.3",
+    "leaflet": "^1.9.4",
     "socket.io-client": "^4.7.2",
     "vue": "^3.2.13",
-    "vue3-google-map": "^0.17.1"
+   
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0",
