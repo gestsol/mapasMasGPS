@@ -1,4 +1,5 @@
 <template>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
   
   <div >
     
@@ -79,6 +80,7 @@ export default {
     },
 
     selectBus() {
+      
       const selectedBus = this.buses.find(bus => bus.id === parseInt(this.selectedTracker));
       this.selectedSource = selectedBus.id_source;
       this.selectedPatente = selectedBus.label;
