@@ -2,7 +2,7 @@
 
   <div>
     <div class="">
-      <div style="height:600px; width:100%">
+      <div style="height:500px; width:100%">
         <l-map ref="map" v-model:zoom="zoom" :center="BusCoord">
           <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" layer-type="base"
             name="OpenStreetMap"></l-tile-layer>
@@ -124,10 +124,6 @@ export default {
             this.markerCoords=[this.mapCenter.lat, this.mapCenter.lng];
             this.center=[this.mapCenter.lat, this.mapCenter.lng];
             
-
-            //this.$emit('cambiar-prop',tramaGps.data.gps.location);
-            //this.$emit('cambiar-prop',this.center);
-
             this.emitCambiarProp(this.center);
 
 
