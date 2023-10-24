@@ -80,7 +80,6 @@ export default {
     },
 
     selectBus() {
-      
       const selectedBus = this.buses.find(bus => bus.id === parseInt(this.selectedTracker));
       this.selectedSource = selectedBus.id_source;
       this.selectedPatente = selectedBus.label;
